@@ -6,6 +6,6 @@
 
 ### Changelogs:
 
-### 
+### 12/10/2024 13:51:00 - (Script and Website) Release
 
 ### https://753eml.github.io for more info
