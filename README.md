@@ -14,4 +14,6 @@
 
 ### 12/10/2024 14:10:00 - (Major change) (Script update) Fixed loadstring.
 
+### 12/10/2024 18:28:40 - (Minor change) (Script update) Hopefully optimized Doors sounds, so it doesnt break every few doors.
+
 ### https://753eml.github.io for more info
