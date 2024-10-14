@@ -1,5 +1,7 @@
 # Beta version of the doors with modified sounds
 
+# Status: MsPaint down, sound replacements work.
+
 ### https://753eml.github.io/doors For stable and tested version source!
 
 ### Loadstring: [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/doorsBETA/refs/heads/main/drbeta.lua"))()](https://raw.githubusercontent.com/753eml/doorsBETA/refs/heads/main/drbeta.lua)
