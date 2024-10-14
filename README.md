@@ -16,4 +16,6 @@
 
 ### 12/10/2024 18:28:40 - (Minor change) (Script update) Hopefully optimized Doors sounds, so it doesnt break every few doors.
 
+### 14/10/2024 16:18:30 - (Minor change) (Script Bug fix) Attempted to fix script on Solara. (testing)
+
 ### https://753eml.github.io for more info
