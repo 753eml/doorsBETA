@@ -80,7 +80,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/
                     end
                 end
             end
-            wait(0.6)
+            wait(0.25)
         end
     end
 else
