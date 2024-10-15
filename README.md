@@ -1,6 +1,6 @@
 # Beta version of the doors with modified sounds
 
-# Status: MsPaint down, sound replacements work.
+# Status: MsPaint working, sound replacements working.
 
 ### https://753eml.github.io/doors For stable and tested version source!
 
