@@ -20,6 +20,6 @@
 
 ### 14/10/2024 16:18:30 - (Minor change) (Script Bug fix) Attempted to fix script on Solara. (testing)
 
-### 15/10/2024 22:36:50 - (Minor change) (Script Update) Changed Default wait time to 0.6 seconds between replacing sounds in a loop again.
+### 15/10/2024 22:36:50 - (Minor change) (Script Update) Changed Default wait time to 0.6 seconds between replacing sounds in a loop again. (23:06:10) Changed to 0.25 seconds.
 
 ### https://753eml.github.io for more info
