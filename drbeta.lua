@@ -15,7 +15,8 @@ getgenv().doorshacksloaded = true
 local placeIds = {
     [6839171747] = "You are in a Doors match!",
     [10549820578] = "You are in a Super Hard Mode Doors match!",
-    [6516141723] = "You are in the Doors lobby!"
+    [6516141723] = "You are in the Doors lobby!",
+    [12308344607] = "You are in the Doors Voice Chat lobby!"
 }
 
 local thumbsUpImage = "rbxassetid://97609256286565"
@@ -60,8 +61,10 @@ local soundIdMaps = {
     [6516141723] = {
         ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
     }
+    [12308344607] = {
+        ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
+    }
 }
-
 if placeIds[game.PlaceId] then
     sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
 
