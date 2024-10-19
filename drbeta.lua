@@ -63,7 +63,7 @@ local soundIdMaps = {
     },
     [12308344607] = {
         ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
-    },
+    }
 }
 if placeIds[game.PlaceId] then
     sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
