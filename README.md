@@ -22,4 +22,6 @@
 
 ### 15/10/2024 22:36:50 - (Minor change) (Script Update) Changed Default wait time to 0.6 seconds between replacing sounds in a loop again. (23:06:10) Changed to 0.25 seconds.
 
+### 19/10/2024 13:39:00 - (Minor change) (Script Update) Added Doors Voice Chat lobby support.
+
 ### https://753eml.github.io for more info
