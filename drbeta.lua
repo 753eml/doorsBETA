@@ -60,7 +60,7 @@ local soundIdMaps = {
     },
     [6516141723] = {
         ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
-    }
+    },
     [12308344607] = {
         ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
     }
