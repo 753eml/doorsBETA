@@ -68,8 +68,8 @@ local soundIdMaps = {
 if placeIds[game.PlaceId] then
     sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
 
--- MsPaint
-loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
+-- MsPaint seperate
+    
     -- SoundID part 2
     local soundIdMap = soundIdMaps[game.PlaceId]
     if soundIdMap then
