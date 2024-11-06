@@ -1,24 +1,19 @@
--- PlaceID, already loaded checks and assets
-if getgenv().doorshacksloaded then
+if getgenv().doorsscriptloaded then
     local thumbsDownImage = "rbxassetid://99911273351388"
     game:GetService("StarterGui"):SetCore("SendNotification", {  
         Title = "Erroɾ";
-        Text = "Doors hacks already loaded!";
+        Text = "Doors script already loaded!";
         Duration = 10; 
         Icon = thumbsDownImage;
     })
     return
 end
-
-getgenv().doorshacksloaded = true
-
 local placeIds = {
     [6839171747] = "You are in a Doors match!",
     [10549820578] = "You are in a Super Hard Mode Doors match!",
     [6516141723] = "You are in the Doors lobby!",
     [12308344607] = "You are in the Doors Voice Chat lobby!"
 }
-
 local thumbsUpImage = "rbxassetid://97609256286565"
 local thumbsDownImage = "rbxassetid://99911273351388"
 
@@ -30,7 +25,6 @@ local function sendNotification(title, text, duration, image)
         Icon = image;
     })
 end
--- Sound replacements part 1
 local soundIdMaps = {
     [6839171747] = {
         ["rbxassetid://11447013731"] = {id = "rbxassetid://5188314808", volume = 1.0},
@@ -67,26 +61,25 @@ local soundIdMaps = {
 }
 if placeIds[game.PlaceId] then
     sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
-
--- MsPaint seperate
-    
-    -- SoundID part 2
     local soundIdMap = soundIdMaps[game.PlaceId]
     if soundIdMap then
-        while true do
-            for _, v in pairs(workspace:GetDescendants()) do
-                if v:IsA("Sound") then  
-                    local soundInfo = soundIdMap[v.SoundId]
-                    if soundInfo then
-                        v.SoundId = soundInfo.id
-                        v.Volume = soundInfo.volume
-                    end
-                end
+        local function modifySound(sound)
+            local soundInfo = soundIdMap[sound.SoundId]
+            if soundInfo then
+                sound.SoundId = soundInfo.id
+                sound.Volume = soundInfo.volume
             end
-            wait(0.25)
         end
+        for _, v in pairs(workspace:GetDescendants()) do
+            if v:IsA("Sound") then
+                modifySound(v)
+            end
+        end
+        workspace.DescendantAdded:Connect(function(descendant)
+            if descendant:IsA("Sound") then
+                modifySound(descendant)
+            end
+        end)
     end
-else
-    -- If player is not in Doors
-    sendNotification("Error", "You are not in Doors!", 10, thumbsDownImage)
 end
+getgenv().doorsscriptloaded = true
