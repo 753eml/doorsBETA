@@ -1,3 +1,6 @@
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+
 if getgenv().doorsscriptloaded then
     local thumbsDownImage = "rbxassetid://99911273351388"
     game:GetService("StarterGui"):SetCore("SendNotification", {  
@@ -8,12 +11,14 @@ if getgenv().doorsscriptloaded then
     })
     return
 end
+
 local placeIds = {
     [6839171747] = "You are in a Doors match!",
     [10549820578] = "You are in a Super Hard Mode Doors match!",
     [6516141723] = "You are in the Doors lobby!",
     [12308344607] = "You are in the Doors Voice Chat lobby!"
 }
+
 local thumbsUpImage = "rbxassetid://97609256286565"
 local thumbsDownImage = "rbxassetid://99911273351388"
 
@@ -25,6 +30,7 @@ local function sendNotification(title, text, duration, image)
         Icon = image;
     })
 end
+
 local soundIdMaps = {
     [6839171747] = {
         ["rbxassetid://11447013731"] = {id = "rbxassetid://5188314808", volume = 1.0},
@@ -59,6 +65,7 @@ local soundIdMaps = {
         ["rbxassetid://7767565697"] = {id = "rbxassetid://11638638410", volume = 1.0}
     }
 }
+
 if placeIds[game.PlaceId] then
     sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
     local soundIdMap = soundIdMaps[game.PlaceId]
@@ -70,16 +77,26 @@ if placeIds[game.PlaceId] then
                 sound.Volume = soundInfo.volume
             end
         end
-        for _, v in pairs(workspace:GetDescendants()) do
-            if v:IsA("Sound") then
-                modifySound(v)
+
+        -- Modify sounds in a single pass
+        for _, sound in ipairs(workspace:GetDescendants()) do
+            if sound:IsA("Sound") then
+                modifySound(sound)
             end
         end
-        workspace.DescendantAdded:Connect(function(descendant)
+
+        -- Hook into new sounds being added, but do it more efficiently
+        local connection = workspace.DescendantAdded:Connect(function(descendant)
             if descendant:IsA("Sound") then
                 modifySound(descendant)
             end
         end)
+
+        -- Disconnect after some time to reduce overhead
+        task.delay(10, function()
+            connection:Disconnect()
+        end)
     end
 end
+
 getgenv().doorsscriptloaded = true
