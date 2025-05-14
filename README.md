@@ -1,11 +1,11 @@
-# Beta version of the doors with modified sounds
+# Doors with replaced sounds (Script in Beta)
 
-# Status: Working.
+# Most recent update: Improved FPS.
 
-### https://753eml.github.io/doors For stable and tested version source!
+### https://753eml.github.io/doors (Outdated/broken due to fps issues until further notice) Older, but stable version!
 
 ### Loadstring: [loadstring(game:HttpGet("https://raw.githubusercontent.com/753eml/doorsBETA/refs/heads/main/drbeta.lua"))()](https://raw.githubusercontent.com/753eml/doorsBETA/refs/heads/main/drbeta.lua)
 
-### Version: 1.3.1 (Beta)
+### Version: 1.4 (Beta)
 
 ### https://753eml.github.io for more info
