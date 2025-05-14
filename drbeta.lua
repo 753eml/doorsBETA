@@ -1,15 +1,29 @@
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
+local StarterGui = game:GetService("StarterGui")
 
-if getgenv().doorsscriptloaded then
-    local thumbsDownImage = "rbxassetid://99911273351388"
-    game:GetService("StarterGui"):SetCore("SendNotification", {  
+if getgenv().DScriptLoad then
+    StarterGui:SetCore("SendNotification", {  
         Title = "Erroɾ";
-        Text = "Doors script already loaded!";
+        Text = "Already loaded";
         Duration = 10; 
-        Icon = thumbsDownImage;
+        Icon = "rbxassetid://99911273351388";
     })
     return
+end
+
+getgenv().DScriptLoad = true
+
+local thumbsUpImage = "rbxassetid://97609256286565"
+local thumbsDownImage = "rbxassetid://99911273351388"
+
+local function sendNotification(title, text, duration, image)
+    StarterGui:SetCore("SendNotification", {  
+        Title = title;
+        Text = text;
+        Duration = duration; 
+        Icon = image;
+    })
 end
 
 local placeIds = {
@@ -18,18 +32,6 @@ local placeIds = {
     [6516141723] = "You are in the Doors lobby!",
     [12308344607] = "You are in the Doors Voice Chat lobby!"
 }
-
-local thumbsUpImage = "rbxassetid://97609256286565"
-local thumbsDownImage = "rbxassetid://99911273351388"
-
-local function sendNotification(title, text, duration, image)
-    game:GetService("StarterGui"):SetCore("SendNotification", {  
-        Title = title;
-        Text = text;
-        Duration = duration; 
-        Icon = image;
-    })
-end
 
 local soundIdMaps = {
     [6839171747] = {
@@ -66,37 +68,32 @@ local soundIdMaps = {
     }
 }
 
-if placeIds[game.PlaceId] then
-    sendNotification("Place Check", placeIds[game.PlaceId], 10, thumbsUpImage)
-    local soundIdMap = soundIdMaps[game.PlaceId]
+local placeId = game.PlaceId
+local placeMessage = placeIds[placeId]
+local soundIdMap = soundIdMaps[placeId]
+
+if placeMessage then
+    sendNotification("Place Check", placeMessage, 10, thumbsUpImage)
+
     if soundIdMap then
+        local processedSounds = {}
+
         local function modifySound(sound)
-            local soundInfo = soundIdMap[sound.SoundId]
-            if soundInfo then
-                sound.SoundId = soundInfo.id
-                sound.Volume = soundInfo.volume
+            if not sound:IsA("Sound") then return end
+            local replacement = soundIdMap[sound.SoundId]
+            if replacement and not processedSounds[sound] then
+                sound.SoundId = replacement.id
+                sound.Volume = replacement.volume
+                processedSounds[sound] = true
             end
         end
 
-        -- Modify sounds in a single pass
-        for _, sound in ipairs(workspace:GetDescendants()) do
-            if sound:IsA("Sound") then
-                modifySound(sound)
-            end
+        -- First pass: existing sounds
+        for _, obj in ipairs(workspace:GetDescendants()) do
+            modifySound(obj)
         end
 
-        -- Hook into new sounds being added, but do it more efficiently
-        local connection = workspace.DescendantAdded:Connect(function(descendant)
-            if descendant:IsA("Sound") then
-                modifySound(descendant)
-            end
-        end)
-
-        -- Disconnect after some time to reduce overhead
-        task.delay(10, function()
-            connection:Disconnect()
-        end)
+        -- Forever hook: new sounds
+        workspace.DescendantAdded:Connect(modifySound)
     end
 end
-
-getgenv().doorsscriptloaded = true
